@@ -28,5 +28,6 @@ Route::get('dashboard', [User::class, 'dashboard'])->name('dashboard');
 Route::middleware('auth')->group(function(){
 
     Route::get('/depts', [DeptController::class, 'index'])->name('depts');
+    Route::post('/depts', [DeptController::class, 'store'])->name('depts.store');
 
 });

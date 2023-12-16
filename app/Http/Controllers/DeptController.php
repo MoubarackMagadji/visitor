@@ -35,7 +35,22 @@ class DeptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // echo strtoupper($request->dept);
+        $validator = \Validator::make($request->all(),[
+            'name' => 'required'
+        ]);
+
+        // echo 'aaaa';
+        if ($validator->fails())
+        {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+        
+            ), 202);
+        }
+        
+        
     }
 
     /**

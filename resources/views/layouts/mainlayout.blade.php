@@ -8,6 +8,7 @@
     @yield('css')
     @yield('csscode')
 	<meta charset='utf-8'>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>Visitors | @yield('title')</title>
 <style>
 	
