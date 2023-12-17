@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dept;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Cookie;
 
 class DeptController extends Controller
 {
@@ -14,7 +16,13 @@ class DeptController extends Controller
      */
     public function index()
     {
-        return view("depts.index");
+        $paginator = request()->nb ?? Cookie::get("sortingTest_data_nb") ?? 10;
+        if(request()->has("nb")) {
+            Cookie::queue("sortingTest_data_nb", request()->nb,365);
+        }
+
+        $depts = Dept::sortable(["id"=>"desc"])->paginate($paginator);
+        return view("depts.index", compact("depts"));
     }
 
     /**
@@ -37,10 +45,11 @@ class DeptController extends Controller
     {
         // echo strtoupper($request->dept);
         $validator = \Validator::make($request->all(),[
-            'name' => 'required'
+            'name' => ['required', Rule::unique("depts", "name")]
         ]);
 
-        // echo 'aaaa';
+        
+        
         if ($validator->fails())
         {
             return response()->json(array(
@@ -50,6 +59,11 @@ class DeptController extends Controller
             ), 202);
         }
         
+        $dept = $request->all();
+        
+        Dept::create($dept);
+
+        echo 'ok';
         
     }
 

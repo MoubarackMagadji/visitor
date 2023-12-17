@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Dept extends Model
 {
     use HasFactory;
+    use Sortable;
+
+    protected $fillable = ['name'];
+
+    protected $sortable = ['id','name','d_status','created_at'];
+
+    public function getStatusAttribute(){
+        return $this->d_status ? "Active" : "Inactive";
+    }
 }

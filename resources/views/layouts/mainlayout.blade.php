@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href=" {{ asset('css/bootstrap-5.3.1.css')}}"> 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
+    <link href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" >
     {{-- <link id="bs-css" href="{{ asset('css/jqD.css') }}" rel="stylesheet"> --}}
     @yield('css')
     @yield('csscode')
@@ -15,7 +16,7 @@
 </style>
 
 </head>
-<body>
+<body class="p-3">
     <header>
         <div id='head'>
             {{-- <span><i id='shrink' style='font-size: 23px;margin-right:10px;' class='fa fa-bars'></i><a id='hIndex' href='{{ route('dashboard')}}'>Ticketing Tool - Employee </a></span> 
