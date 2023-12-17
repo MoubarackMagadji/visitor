@@ -16,9 +16,9 @@ class DeptController extends Controller
      */
     public function index()
     {
-        $paginator = request()->nb ?? Cookie::get("sortingTest_data_nb") ?? 10;
+        $paginator = request()->nb ?? Cookie::get("visitors_data_nb") ?? 10;
         if(request()->has("nb")) {
-            Cookie::queue("sortingTest_data_nb", request()->nb,365);
+            Cookie::queue("visitors_data_nb", request()->nb,365);
         }
 
         $depts = Dept::sortable(["id"=>"desc"])->paginate($paginator);
@@ -43,7 +43,7 @@ class DeptController extends Controller
      */
     public function store(Request $request)
     {
-        // echo strtoupper($request->dept);
+        
         $validator = \Validator::make($request->all(),[
             'name' => ['required', Rule::unique("depts", "name")]
         ]);

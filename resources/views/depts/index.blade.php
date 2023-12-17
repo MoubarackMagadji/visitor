@@ -6,9 +6,7 @@
 
 @section('csscode')
 <style>
-    #formFeedback{
-        display: none;
-    }
+    
 </style>
 @endsection
 
@@ -22,30 +20,18 @@
     </div>
 
     <form id='deptAdd' class='w-50 bg-light p-4 shadow-sm rouded'>
-
-        
+ 
         @csrf
 
         <div class="mb-3">
-            <label class='mb-2' for='dept'>Department anme</label>
+            <label class='mb-2' for='dept'>Department name</label>
             <input type="text" id='dept' name='name' class="form-control form-control-sm" placeholder="Ex: Audit" required>
         </div>
 
         <input type="submit" value='Add' class="mt-3 btn btn-primary btn-sm px-4">
     </form>
 
-    @php
-        $paginator = Request::get('nb') ?? Cookie::get('sortingTest_data_nb') ?? 10;
-        $baseLink = str_replace('&amp;', '&', request()->url()."?".http_build_query(Request::except('nb')));
-    @endphp
-
-    <select id='select'>
-        <option {{ $paginator == 10 ? "selected" : ""}}>10</option>
-        <option {{ $paginator == 20 ? "selected" : ""}}>20</option>
-        <option {{ $paginator == 500 ? "selected" : ""}}>500</option>
-    </select>
-
-    
+    <x-sort-select attr="visitors_data_nb"/>
 
     <table class="table table-striped table-bordered table-light table-hover ">
         <thead>
@@ -64,7 +50,7 @@
                 <td> {{ $dept->name }}</td>
                 <td> {{ $dept->status }}</td>
                 <td> {{ $dept->created_at->format('d/m/Y h:i') }}</td>
-                <td> <button class="btn btn-primary btn-sm">Edit</button> </td>
+                <td> <button class="btn btn-primary btn-sm px-3">Edit</button> </td>
             </tr>
             @empty
                 No data yet

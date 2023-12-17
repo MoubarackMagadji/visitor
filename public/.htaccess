@@ -21,6 +21,7 @@
     ExpiresByType application/x-javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
+    
 
 
     RewriteEngine on

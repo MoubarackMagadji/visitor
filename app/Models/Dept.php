@@ -18,4 +18,8 @@ class Dept extends Model
     public function getStatusAttribute(){
         return $this->d_status ? "Active" : "Inactive";
     }
+
+    public function employees(){
+        return $this->hasMany(Employee::class);
+    }
 }
