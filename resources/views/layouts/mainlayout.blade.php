@@ -28,9 +28,12 @@
             <a href='{{ route('depts')}}'> <span> Depts </span></a>
             <a href='{{ route('employees')}}'> <span> Employees </span></a>
             
+        </nav>
+
 
         @yield('content')
-    </div>
+    </header>
+
 </section>
 	
 <?php /* include('footer.php'); */ ?>
@@ -39,7 +42,8 @@
     {{-- <script src=" {{ asset('js/jqD.js') }}"></script> --}}
     @yield('js')
     @yield('script')
-	<script>
+	
+    <script>
 		
 	</script>
 </body>

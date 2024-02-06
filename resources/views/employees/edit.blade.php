@@ -66,7 +66,7 @@
             @enderror
         </div>
 
-        <input type="submit" value='Add' class="mt-3 btn btn-primary btn-sm px-4">
+        <input type="submit" value='Update' class="mt-3 btn btn-primary btn-sm px-4">
     </form>
 
 
