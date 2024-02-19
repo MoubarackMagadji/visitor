@@ -15,6 +15,12 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
+            $table->string('vistorname');
+            $table->integer('nbvisitors');
+            $table->boolean('ended')->default(false);
+            $table->text('picture')->nullable();
+            $table->string('tel');
+            $table->bigInteger('emp_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

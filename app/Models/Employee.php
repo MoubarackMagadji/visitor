@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Dept;
+use App\Models\Visit;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,4 +32,8 @@ class Employee extends Model
     public function dept(){
         return $this->belongsTo(Dept::class);
     }
+
+    public function visits(){
+        return $this->belongsTo(Visit::class, 'emp_id', 'id')
+;    }
 }

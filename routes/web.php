@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function(){
 
 
     Route::get('/visits', [VisitController::class, 'index'])->name('viewVisits');
-    Route::get('/visit/add', [VisitController::class, 'index'])->name('addVisit');
+    Route::get('/visit/add', [VisitController::class, 'create'])->name('addVisit');
+    Route::post('/visit/add', [VisitController::class, 'store'])->name('addVisitPost');
+    Route::get('/visit/{visit}', [VisitController::class, 'show'])->name('visitView');
+    Route::post('/visit/end', [VisitController::class, 'endVisit'])->name('visitEnd');
 
 });
