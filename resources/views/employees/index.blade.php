@@ -50,7 +50,8 @@
         <thead>
             <tr>
                 <th>@sortablelink("id","ID")</th>
-                <th>@sortablelink('name','Name')</th>
+                <th>@sortablelink('firstname','Name')</th>
+                <th>@sortablelink('dept.name','Dept')</th>
                 <th>@sortablelink('e_status','Status')</th>
                 <th>@sortablelink('created_at','Created date')</th>
                 <th>Actions</th>
@@ -61,6 +62,7 @@
             <tr > 
                 <td> {{ $employee->id }}</td>
                 <td> {{ $employee->fullname }}</td>
+                <td> {{ $employee->dept->name }}</td>
                 <td> {{ $employee->status }}</td>
                 <td> {{ $employee->created_at->format('d/m/Y h:i') }}</td>
                 <td class='text-center'> <a href="{{route('employee.show', $employee->id )}}"> <i class='bi bi-eye fs-4'></i> </td>

@@ -6,6 +6,7 @@
         <a href=' {{ url()->previous() }}'> <button class='btn btn-outline-secondary btn-sm '>Back</button></a>
         
     </div>
+    
     <form action="{{route('employee.update', $employee->id)}}" method='post' id='employeeAdd' class='w-50 bg-light p-4 shadow-sm rouded'>  
         @csrf
         @method("POST")

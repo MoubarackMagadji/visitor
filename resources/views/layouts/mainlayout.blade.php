@@ -27,6 +27,9 @@
             <a href='{{ route('dashboard')}}'><i class='fa fa-home'></i><span> Dashboard</span></a>
             <a href='{{ route('depts')}}'> <span> Depts </span></a>
             <a href='{{ route('employees')}}'> <span> Employees </span></a>
+            <a href='{{ route('addVisit')}}'> <span> Add </span></a>
+            <a href='{{ route('viewVisits')}}'> <span> View records </span></a>
+            
             
         </nav>
 

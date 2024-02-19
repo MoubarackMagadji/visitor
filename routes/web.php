@@ -3,6 +3,7 @@
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeptController;
+use App\Http\Controllers\VisitController;
 use App\Http\Controllers\EmployeeController;
 
 /*
@@ -37,5 +38,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/employee/{employee}', [EmployeeController::class, 'show'])->name('employee.show');
     Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('/employee/{employee}/update', [EmployeeController::class, 'update'])->name('employee.update');
+
+
+    Route::get('/visits', [VisitController::class, 'index'])->name('viewVisits');
+    Route::get('/visit/add', [VisitController::class, 'index'])->name('addVisit');
 
 });
