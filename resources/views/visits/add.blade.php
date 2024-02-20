@@ -4,6 +4,15 @@
     Add a visit
 @endsection
 
+
+@section('csscode')
+<style>
+    #videoDiv{
+        display: none;
+    }
+</style>   
+@endsection
+
 @section('content')
 
     <a href="{{ url()->previous() }}"><button class='btn btn-outline-secondary btn-sm '>Back</button></a>
@@ -12,41 +21,8 @@
         <ul id='formFeedbackUl'>
         </ul>
     </div>
-    
-    <form id='visitAdd' class='w-50 bg-light p-4 shadow-sm rouded'>  
-        @csrf
 
-        <div class="mb-3">
-            <label class='mb-2' for='vistorname'>Visitor name</label>
-            <input type="text" id='vistorname' name='vistorname' class="form-control form-control-sm" >
-        </div>
-
-        <div class="mb-3">
-            <label class='mb-2' for='nbvisitors'>Number of visitors</label>
-            <input type="number" id='nbvisitors' name='nbvisitors' class="form-control form-control-sm" >
-        </div>
-
-        <div class="mb-3">
-            <label class='mb-2' for='tel'>Telephone number</label>
-            <input type="text" id='tel' name='tel' class="form-control form-control-sm"  >
-        </div>
-
-        
-
-        <div class="mb-3">
-            <label class='mb-2' for='emp_id'>Employee name</label>
-            <select class="form-select" name="emp_id" required>
-                <option value="">Choose a staff</option>
-                @foreach($employees as $employee)
-                    <option value='{{ $employee->id }}'>{{ strtoupper($employee->fullname) }} - {{ strtoupper($employee->dept->name) }} </option>
-                @endforeach
-            </select>
-        </div>
-
-        <input type="submit" value='Add' class="mt-3 btn btn-primary btn-sm px-4">
-    </form>
-
-    <div > <button  id='addPicture' class='btn-primary btn-sm'> Add picture</button></div>
+    <div class='my-4 ms-5'> <button  id='addPicture' class='btn btn-outline-primary btn-sm'> Add picture</button></div>
 
     <div id='videoDiv' class='row mt-3'>
         <div class='row'>
@@ -70,6 +46,45 @@
         </div>
         
     </div>
+    
+    <form id='visitAdd' class='w-50 bg-light p-4 shadow-sm rouded'>  
+        @csrf
+
+        <div class="mb-3">
+            <label class='mb-2' for='vistorname'>Visitor name</label>
+            <input type="text" id='vistorname' name='vistorname' class="form-control form-control-sm" >
+        </div>
+
+        <div class="mb-3">
+            <label class='mb-2' for='nbvisitors'>Number of visitors</label>
+            <input type="number" id='nbvisitors' name='nbvisitors' class="form-control form-control-sm" >
+        </div>
+
+        <div class="mb-3">
+            <label class='mb-2' for='tel'>Telephone number</label>
+            <input type="text" id='tel' name='tel' class="form-control form-control-sm"  >
+        </div>
+
+        <div class="mb-3">
+            <label class='mb-2' for='emp_id'>Employee name</label>
+            <select class="form-select" name="emp_id" required>
+                <option value="">Choose a staff</option>
+                @foreach($employees as $employee)
+                    <option value='{{ $employee->id }}'>{{ strtoupper($employee->fullname) }} - {{ strtoupper($employee->dept->name) }} </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class='mb-2' for='tel'>Additional Note</label>
+            <textarea class='form-control' rows='4' name='additionalnote'></textarea>
+            
+        </div>
+
+        <input type="submit" value='Add' class="mt-3 btn btn-primary btn-sm px-4">
+    </form>
+
+    
 
 @endsection
 
@@ -86,38 +101,11 @@
     })
 
     $('#snapButton').click(function(){
-				canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 		   	let image_data_url = canvas.toDataURL('image/jpeg');
 		   	stream.getTracks().forEach(track => track.stop())
 		   	$('#snapButton').hide()
 		   	$('#tryagain').show(100)
-		})
-
-		$('#uploadButton').click(function(){
-			image_base64  = canvas.toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, "");
-			let data = {
-				updateImage: 'ok',
-				imageData:image_base64,
-				std_id:$('#empIDDiv').data('id')
-			}
-			$.ajax({
-	        url:'postfolder/ajaxPost.php',
-	        type:'post',
-	        data:data,
-	        dataType:'text',
-	        success: function(donnee,statut){
-	        	console.log(donnee)
-	        	if(donnee.trim() == 'ok'){
-	        		notify('success','Image uploaded successfully', function(){
-	        			location.reload()
-	        		})
-	        		
-	        	}
-	        },
-	        error:function(){
-	        	
-	        }
-			})
 		})
 
 		$('#cancelButton').click(function(){
@@ -131,10 +119,11 @@
         $('#formFeedback').hide()
         $('#formFeedbackUl').empty()
         
-        data = $(this).serialize();
+        
+        image_base64  = canvas.toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, "");
+        data = $(this).serialize()+ '&image=' + image_base64;
+        
 
-        // console.log(data)
-        // return false;
         $.ajax({
             url:'{{ route("addVisitPost") }}',
             type:'post',

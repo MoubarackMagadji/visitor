@@ -6,7 +6,9 @@ use App\Models\Visit;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Storage;
 
 class VisitController extends Controller
 {
@@ -53,6 +55,13 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         
+        
+        $image = base64_decode($request->image);
+        $imageName = uniqid(basename('aabb')).'.jpg';
+        
+        // file_put_contents('../../uploads/'.$imageName, $data);
+        Storage::put('public/media/'.$imageName, $image);
+        
         $validator = \Validator::make($request->all(),[
             "vistorname" => 'required',
             'nbvisitors' => 'required|integer|min:1',
@@ -69,9 +78,20 @@ class VisitController extends Controller
             ), 202);
         }
         
-        $visit = $request->all();
+        // $visit = $validator->all();
+        $data = [
+            'vistorname' => $request->vistorname,
+            'nbvisitors' => $request->nbvisitors,
+            'tel' => $request->tel,
+            'emp_id' => $request->emp_id,
+            'picture' => $imageName,
+            'additionalnote' => $request->additionalnote,
+            'closer' => 0,
+            'creator' => auth()->user()->id
+        ];
+        // $validator['picture'] = $imageName;
         
-        Visit::create($visit);
+        Visit::create($data);
 
         echo 'ok';
 
@@ -82,6 +102,7 @@ class VisitController extends Controller
 
         $visit = Visit::where('id',$request->visitID)->first();
 
+        $visit->closer = auth()->user()->id;
         $visit->ended = true;
         $visit->save();
 

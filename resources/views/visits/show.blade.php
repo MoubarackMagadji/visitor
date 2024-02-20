@@ -11,6 +11,11 @@
             <a href=' {{ route("viewVisits") }}'> <button class='btn btn-outline-secondary btn-sm '>Back</button></a>
             
         </div>
+
+        <div class="row col-8 mb-4">
+            <strong class=''> Visitor's name:</strong> 
+            <img style='width:300px; height:300px' src='{{ asset("storage/media/".$visit->picture) }}' />
+        </div>
         <div class="row col-8 mb-4">
             <strong class='col-4'> Visitor's name:</strong> <span class='col-4'>{{ $visit->vistorname }}</span>
         </div>
@@ -50,8 +55,29 @@
         </div>
 
         <div class="row col-8 mb-4">
-            <strong class='col-4'> Creation Date:</strong> <span class='col-4'>{{ $visit->created_at->format('D M d, Y') }}</span>
+            <strong class='col-4'> Additional Note:</strong> <span class='col-4'>{{ $visit->additionalnote }}</span>
         </div>
+
+        <div class="row col-8 mb-4">
+            <strong class='col-4'> Ticket's creator:</strong> <span class='col-4'>{{ $visit->ticketcreator->name }}</span>
+        </div>
+
+        <div class="row col-8 mb-4">
+            <strong class='col-4'> Creation Date & Time:</strong> <span class='col-4'>{{ $visit->created_at->format('D M d, Y h:i') }}</span>
+        </div>
+
+        @if ($visit->ended)
+
+            <div class="row col-8 mb-4">
+                <strong class='col-4'> Ticket's closer:</strong> <span class='col-4'>{{ $visit->ticketcloser->name }}</span>
+            </div>
+
+            <div class="row col-8 mb-4">
+                <strong class='col-4'> Ended Date & Time:</strong> <span class='col-4'>{{ $visit->updated_at->format('D M d, Y h:i') }}</span>
+            </div>
+
+        @endif
+        
 
     </div>
 
@@ -60,7 +86,8 @@
 @section('script')
 <script>
 
-    $('.endButton').click(function(){
+    $('.endButton').click(function(e){
+        e.preventDefault()
         var endForm = $(this).parent('.endForm')
         if(confirm('Are you sure you want to end this visit?')){
 

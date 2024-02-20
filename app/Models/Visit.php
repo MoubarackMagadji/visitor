@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Employee;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
@@ -18,5 +19,13 @@ class Visit extends Model
 
     public function employee(){
         return $this->hasOne(Employee::class,'id','emp_id');
+    }
+
+    public function ticketcloser(){
+        return $this->hasOne(User::class,'id','closer');
+    }
+
+    public function ticketcreator(){
+        return $this->hasOne(User::class,'id','creator');
     }
 }
