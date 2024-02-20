@@ -7,15 +7,19 @@
 @section('content')
     
 <div class="row p-2 border-1 bg-light mt-3">
+        
+        
         <div class='mb-3'>
             <a href=' {{ route("viewVisits") }}'> <button class='btn btn-outline-secondary btn-sm '>Back</button></a>
-            
         </div>
 
-        <div class="row col-8 mb-4">
-            <strong class=''> Visitor's name:</strong> 
-            <img style='width:300px; height:300px' src='{{ asset("storage/media/".$visit->picture) }}' />
-        </div>
+        @if ($visit->picture)
+            <div class="row col-8 mb-4">
+                <strong class=''> Visitor's picture:</strong> 
+                <img style='width:300px; height:300px' src='{{ asset("storage/media/".$visit->picture) }}' />
+            </div>
+        @endif
+        
         <div class="row col-8 mb-4">
             <strong class='col-4'> Visitor's name:</strong> <span class='col-4'>{{ $visit->vistorname }}</span>
         </div>
