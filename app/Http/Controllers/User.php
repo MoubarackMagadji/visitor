@@ -35,6 +35,12 @@ class User extends Controller
 
     }
 
+    public function create(){
+
+        return view('users.add');
+
+    }
+
     public function dashboard (){
         return view("dashboard");
     }

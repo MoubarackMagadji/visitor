@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/users', [User::class, 'index'])->name('users');
 
     Route::prefix('user')->group(function(){
-        Route::get('user/create', [User::class, 'create'])->name('user.add');
+        Route::get('/create', [User::class, 'create'])->name('user.add');
     });
 
 });
