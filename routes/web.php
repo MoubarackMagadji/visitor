@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/employee/{employee}', [EmployeeController::class, 'show'])->name('employee.show');
     Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('/employee/{employee}/update', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::get('/employee/{employee}/visits', [EmployeeController::class, 'visits'])->name('employee.visits');
 
 
     Route::get('/visits', [VisitController::class, 'index'])->name('viewVisits');
@@ -45,5 +46,11 @@ Route::middleware('auth')->group(function(){
     Route::post('/visit/add', [VisitController::class, 'store'])->name('addVisitPost');
     Route::get('/visit/{visit}', [VisitController::class, 'show'])->name('visitView');
     Route::post('/visit/end', [VisitController::class, 'endVisit'])->name('visitEnd');
+
+    Route::get('/users', [User::class, 'index'])->name('users');
+
+    Route::prefix('user')->group(function(){
+        Route::get('user/create', [User::class, 'create'])->name('user.add');
+    });
 
 });

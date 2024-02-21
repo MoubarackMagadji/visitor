@@ -66,6 +66,21 @@
         </div>
 
         <div class="mb-3">
+            <label class='mb-2' for='company'>Company name</label>
+            <input type="text" id='company' name='company' class="form-control form-control-sm"  >
+        </div>
+
+        <div class="mb-3">
+            <label class='mb-2' for='purpose'>Purpose</label>
+            <select name="purpose" id='purpose' class='form-select' required>
+                <option value="">Select a purpose</option>
+                <option value="1">Personal</option>
+                <option value="2">Official</option>
+                <option value="3">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label class='mb-2' for='emp_id'>Employee name</label>
             <select class="form-select" name="emp_id" required>
                 <option value="">Choose a staff</option>

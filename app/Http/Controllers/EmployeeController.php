@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dept;
+use App\Models\Visit;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -28,6 +29,24 @@ class EmployeeController extends Controller
 
 
         return view('employees.index')->with(['depts'=>$depts, 'employees'=>$employees]);
+    }
+
+    public function visits(Employee $employee){
+
+        
+        // dd($employee->visits);
+
+        $paginator = request()->nb ?? Cookie::get("visitors_visitsemp_nb") ?? 10;
+        if(request()->has("nb")) {
+            Cookie::queue("visitors_visitsemp_nb", request()->nb,365);
+        }
+
+        $visits = Visit::where('emp_id',$employee->id)->sortable(["id"=>"desc"])->paginate($paginator);
+        // $visits = $employee->visits;
+        // dd($visits->total());
+
+        return view('employees.visits', compact('visits', 'employee'));
+
     }
 
     /**

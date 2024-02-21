@@ -54,7 +54,8 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // print_r($request->all());
+        // exit;
         
         $image = base64_decode($request->image);
         $imageName = uniqid(basename('aabb')).'.jpg';
@@ -66,7 +67,8 @@ class VisitController extends Controller
             "vistorname" => 'required',
             'nbvisitors' => 'required|integer|min:1',
             "tel" => 'required|min:8|max:12',
-            "emp_id" => ['required', Rule::exists('employees','id')]
+            "emp_id" => ['required', Rule::exists('employees','id')],
+            "purpose" => ['required', 'between:1,3']
         ]);
 
         if ($validator->fails())
@@ -86,6 +88,8 @@ class VisitController extends Controller
             'emp_id' => $request->emp_id,
             'picture' => $imageName,
             'additionalnote' => $request->additionalnote,
+            'purpose' => $request->purpose,
+            'company' => $request->company,
             'closer' => 0,
             'creator' => auth()->user()->id
         ];

@@ -29,6 +29,8 @@
             <a href='{{ route('employees')}}'> <span> Employees </span></a>
             <a href='{{ route('addVisit')}}'> <span> Add </span></a>
             <a href='{{ route('viewVisits')}}'> <span> View records </span></a>
+            <a href='{{ route('users')}}'> <span> Users </span></a>
+            <a href='{{ route('user.add')}}'> <span> Add user </span></a>
             
             
         </nav>

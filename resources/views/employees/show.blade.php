@@ -6,6 +6,8 @@
 
 @section('content')
     
+    <x-emp-account-nav page="account" employeeid="{{$employee->id}}" />
+        
     
     <div class="row p-2 border-1 bg-light mt-3">
         <div class='mb-3'>

@@ -1,13 +1,18 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    Visits
+    {{ $employee->fullname }}' visits
 @endsection
 
 @section('content')
+    
+    
+    <x-emp-account-nav page="visits" employeeid="{{$employee->id}}" />
     <h1>Visits</h1>
 
-    <x-sort-select attr="visitors_visits_nb"/>
+    <h3>Visits count: {{ $visits->total() }}</h3>
+
+    <x-sort-select attr="visitors_visitsemp_nb"/>
 
     <table class="table table-striped table-bordered table-light table-hover ">
         <thead>
@@ -37,16 +42,9 @@
                         @endif
                     </td>
                     <td>{{ $visit->created_at->format('d/M/Y h:i') }}</td>
-                    <td class='d-flex align-items-center'> 
+                    <td class='text-center'> 
                         <a href="{{route('visitView', $visit->id )}}"> <i class='bi bi-eye fs-4 me-1'></i></a> 
 
-                        @if (!$visit->ended)
-                            <form class='endForm'>
-                                @csrf
-                                <input type="hidden" name='visitID' value="{{ $visit->id }}" >
-                                <button  class='btn btn-sm btn-danger cursor-pointer endButton'>End</button>
-                            </form>
-                        @endif
                         
                         
                     </td>
@@ -71,37 +69,5 @@
         location.href= baselink.replaceAll("&amp;", "&")+"&nb="+$(this).val()
     })
 
-    $('.endForm').submit(function(e){
-        e.preventDefault()
-    })
-
-    $('.endButton').click(function(){
-        var endForm = $(this).parent('.endForm')
-        if(confirm('Are you sure you want to end this visit?')){
-
-            data = endForm.serialize();
-           
-            $.ajax({
-                url:'{{ route("visitEnd") }}',
-                type:'post',
-                data:data,
-                dataType:'text',
-                success: function(donne,statut, xhr){
-                    
-                    if(donne.trim() == 'ended'){
-                        alert('Ended')
-
-                        location.reload()
-                    }
- 
-                },error:function(response){
-                    console.log(response)
-                    
-                }
-            })
-        }
-    })
-
-
-</script>
+</script>   
 @endsection

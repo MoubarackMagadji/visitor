@@ -17,6 +17,17 @@ class Visit extends Model
 
     protected $sortable = ['id', 'vistorname', 'nbvisitors', 'ended', 'created_at'];
 
+    public function getPurposeWordAttribute(){
+        if($this->purpose == 1){
+            return "Personal";
+        }elseif($this->purpose == 2){
+            return "Official";
+        }else{
+            return "Other";
+        }
+        
+    }
+
     public function employee(){
         return $this->hasOne(Employee::class,'id','emp_id');
     }
@@ -28,4 +39,6 @@ class Visit extends Model
     public function ticketcreator(){
         return $this->hasOne(User::class,'id','creator');
     }
+
+
 }

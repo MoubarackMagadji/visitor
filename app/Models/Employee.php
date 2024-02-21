@@ -34,6 +34,7 @@ class Employee extends Model
     }
 
     public function visits(){
-        return $this->belongsTo(Visit::class, 'emp_id', 'id')
-;    }
+        return $this->hasMany(Visit::class, 'emp_id', 'id');
+    }
+
 }

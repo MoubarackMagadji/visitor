@@ -29,6 +29,12 @@
         <div class="row col-8 mb-4">
             <strong class='col-4'> Nb of visitors</strong> <span class='col-4'>{{ $visit->nbvisitors }}</span>
         </div>
+        <div class="row col-8 mb-4">
+            <strong class='col-4'> Company</strong> <span class='col-4'>{{ $visit->company }}</span>
+        </div>
+        <div class="row col-8 mb-4">
+            <strong class='col-4'> Purpose</strong> <span class='col-4'>{{ $visit->purpose_word }}</span>
+        </div>
 
         <div class="row col-8 mb-4">
             <strong class='col-4'> Status:</strong>
@@ -51,7 +57,8 @@
         </div>
 
         <div class="row col-8 mb-4">
-            <strong class='col-4'> Employee:</strong> <span class='col-4'>{{ $visit->employee->fullname }}</span>
+            <strong class='col-4'> Employee:</strong> 
+            <span class='col-4'> <a href="{{ route('employee.show', $visit->employee->id) }}">{{ $visit->employee->fullname }}</a></span>
         </div>
 
         <div class="row col-8 mb-4">
