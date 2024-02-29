@@ -9,7 +9,7 @@
     <h1>Add a user</h1>
 
     <form action="">
-        
+        @csrf
     </form>
 
 @endsection
