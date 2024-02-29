@@ -3,7 +3,9 @@
 <head>
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}"> 
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
     <link href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" >
     {{-- <link id="bs-css" href="{{ asset('css/jqD.css') }}" rel="stylesheet"> --}}
     @yield('css')
