@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-	<link rel="stylesheet" href=" {{ asset('css/bootstrap.css')}}"> 
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}"> 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
     <link href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" >
     {{-- <link id="bs-css" href="{{ asset('css/jqD.css') }}" rel="stylesheet"> --}}
@@ -43,7 +43,7 @@
 	
 <?php /* include('footer.php'); */ ?>
 	<script src='{{ asset('js/jq.js') }}'></script>
-    <script src=' {{ asset('js/bootstrap.js') }}'> </script>
+    <script src='{{ asset('js/bootstrap.js') }}'> </script>
     {{-- <script src=" {{ asset('js/jqD.js') }}"></script> --}}
     @yield('js')
     @yield('script')
