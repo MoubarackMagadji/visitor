@@ -11,7 +11,8 @@
         "kyslik/column-sortable": "^6.5",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "php-flasher/flasher-toastr-laravel": "^1.15"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
