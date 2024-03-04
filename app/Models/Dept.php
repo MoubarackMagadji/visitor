@@ -14,6 +14,7 @@ class Dept extends Model
     protected $fillable = ['name'];
 
     protected $sortable = ['id','name','d_status','created_at'];
+    public $sortableAs = ['employees_count'];
 
     public function getStatusAttribute(){
         return $this->d_status ? "Active" : "Inactive";

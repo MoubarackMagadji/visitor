@@ -9,7 +9,7 @@
 
     <x-sort-select attr="visitors_visits_nb"/>
 
-    <table class="table table-striped table-bordered table-light table-hover ">
+    <table class="table table-sm table-striped table-bordered table-light table-hover ">
         <thead>
             <tr>
                 <th>@sortablelink("id","ID")</th>

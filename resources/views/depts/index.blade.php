@@ -6,20 +6,22 @@
 
 @section('csscode')
 <style>
-    
+    #deptAdd{
+        display: none;
+    }
 </style>
 @endsection
 
 @section('content')
     
-    <button  class='btn btn-primary btn-sm my-3'> Add a department</button>
+    <button  class='btn btn-primary btn-sm my-3' id="deptAddButton"> Add a department</button>
 
     <div class="bg-danger p-3 rounded w-50" id="formFeedback">
         <ul id='formFeedbackUl'>
         </ul>
     </div>
 
-    <form id='deptAdd' class='w-50 bg-light p-4 shadow-sm rouded'>
+    <form id='deptAdd' class='w-100 bg-light p-4 shadow-sm rouded '>
  
         @csrf
 
@@ -39,6 +41,7 @@
                 <th>@sortablelink("id","ID")</th>
                 <th>@sortablelink('name','Name')</th>
                 <th>@sortablelink('d_status','Status')</th>
+                <th>User count</th>
                 <th>@sortablelink('created_at','Created date')</th>
                 <th>Actions</th>
             </tr>
@@ -49,6 +52,7 @@
                 <td> {{ $dept->id }}</td>
                 <td> {{ $dept->name }}</td>
                 <td> {{ $dept->status }}</td>
+                <td> {{ $dept->employees->count() }}</td>
                 <td> {{ $dept->created_at->format('d/m/Y h:i') }}</td>
                 <td> <a href="{{ route('dept.edit', $dept->id)}}"><i class='bi bi-eye fs-4 text-primary'></i></a> </td>
             </tr>
@@ -70,6 +74,10 @@
     var baselink = "{{ str_replace('&amp;', '&', request()->url()."?".http_build_query(Request::except('nb'))) }}";
     $('#select').change(function(){
         location.href= baselink.replaceAll("&amp;", "&")+"&nb="+$(this).val()
+    })
+
+    $('#deptAddButton').click(function(){
+        $('#deptAdd').toggle(200)
     })
     
     $('#deptAdd').submit(function(e){

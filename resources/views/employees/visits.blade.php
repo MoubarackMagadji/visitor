@@ -8,9 +8,9 @@
     
     
     <x-emp-account-nav page="visits" employeeid="{{$employee->id}}" />
-    <h1>Visits</h1>
+    <h1>Visits ({{ $visits->total() }})</h1>
 
-    <h3>Visits count: {{ $visits->total() }}</h3>
+    
 
     <x-sort-select attr="visitors_visitsemp_nb"/>
 

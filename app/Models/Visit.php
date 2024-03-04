@@ -32,11 +32,11 @@ class Visit extends Model
         return $this->hasOne(Employee::class,'id','emp_id');
     }
 
-    public function ticketcloser(){
+    public function visitcloser(){
         return $this->hasOne(User::class,'id','closer');
     }
 
-    public function ticketcreator(){
+    public function visitcreator(){
         return $this->hasOne(User::class,'id','creator');
     }
 

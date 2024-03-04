@@ -4,7 +4,17 @@
     Employees
 @endsection
 
+@section('csscode')
+<style>
+    #employeeAdd{
+        display: none;
+    }
+</style>
+@endsection
+
 @section('content')
+
+    <button  class='btn btn-primary btn-sm my-3' id="empAddButton"> Add an employee</button>
     
     <div class="bg-danger p-3 rounded w-50" id="formFeedback">
         <ul id='formFeedbackUl'>
@@ -85,6 +95,10 @@
     // $('#select').change(function(){
     //     location.href= baselink.replaceAll("&amp;", "&")+"&nb="+$(this).val()
     // })
+
+    $('#empAddButton').click(function(){
+        $('#employeeAdd').toggle(200)
+    })
     
     $('#employeeAdd').submit(function(e){
         e.preventDefault();

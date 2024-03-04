@@ -6,14 +6,28 @@ table th a{
     justify-content: space-between;
 }
 
-body {
+/* body {
 	background-color: #fff;
 	font-size: 14px;
+} */
+
+#topheader{
+    position:fixed;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    z-index: 500;
+    color:white;
+}
+header{
+    position: fixed;
+    height: 100%;
+    background: #ebebeb;
+
 }
 nav {
 	position: relative;
-	margin: 50px;
-	width: 360px;
+	width: 180px;
 }
 nav ul {
 	list-style: none;

@@ -6,7 +6,7 @@
 
 @section('content')
     
-<div class="row p-2 border-1 bg-light mt-3">
+<div class="row p-2 border-1  mt-3">
         
         
         <div class='mb-3'>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="row col-8 mb-4">
-            <strong class='col-4'> Ticket's creator:</strong> <span class='col-4'>{{ $visit->ticketcreator->name }}</span>
+            <strong class='col-4'> Ticket's creator:</strong> <span class='col-4'>{{ $visit->visitcreator->name }}</span>
         </div>
 
         <div class="row col-8 mb-4">
@@ -80,7 +80,7 @@
         @if ($visit->ended)
 
             <div class="row col-8 mb-4">
-                <strong class='col-4'> Ticket's closer:</strong> <span class='col-4'>{{ $visit->ticketcloser->name }}</span>
+                <strong class='col-4'> Ticket's closer:</strong> <span class='col-4'>{{ $visit->visitcloser->name }}</span>
             </div>
 
             <div class="row col-8 mb-4">
