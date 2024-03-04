@@ -50,7 +50,7 @@
                 <td> {{ $dept->name }}</td>
                 <td> {{ $dept->status }}</td>
                 <td> {{ $dept->created_at->format('d/m/Y h:i') }}</td>
-                <td> <button class="btn btn-primary btn-sm px-3">Edit</button> </td>
+                <td> <a href="{{ route('dept.edit', $dept->id)}}"><i class='bi bi-eye fs-4 text-primary'></i></a> </td>
             </tr>
             @empty
                 No data yet

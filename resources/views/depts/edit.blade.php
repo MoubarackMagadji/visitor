@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('title')
-    user - {{ $user->name }}
+    dept - {{ $dept->name }}
 @endsection
 
 @section('content')
@@ -9,39 +9,22 @@
     <h1>Edit user</h1>
 
     <div class='mb-3'>
-        <a href=' {{ route("users") }}'> <button class='btn btn-outline-secondary btn-sm '>Back</button></a>
+        <a href=' {{ route("depts") }}'> <button class='btn btn-outline-secondary btn-sm '>Back</button></a>
     </div>
 
     <form id='usersEdit' class='w-50 bg-light p-4 shadow-sm rouded'>  
         @csrf
         <div class="mb-3">
             <label class='mb-2' for='name'>Name</label>
-            <input type="text" id='name' name='name' class="form-control form-control-sm" value="{{$user->name}}" >
+            <input type="text" id='name' name='name' class="form-control form-control-sm" value="{{$dept->name}}" >
         </div>
+        
         <div class="mb-3">
-            <label class='mb-2' for='username'>Username</label>
-            <input type="text" id='username' name='username' class="form-control form-control-sm"  value="{{$user->username}}" >
-        </div>
-
-        {{-- <div class="mb-3">
-            <label class='mb-2' for='password'>Password</label>
-            <input type="text" id='password' name='password' class="form-control form-control-sm" >
-        </div>
-
-        <div class="mb-3">
-            <label class='mb-2' for='password_confirmation'>Password confirmation</label>
-            <input type="text" id='password_confirmation' name='password_confirmation' class="form-control form-control-sm"  >
-        </div> --}}
-
-        <div class="mb-3">
-            <input type="checkbox" id='is_admin' name='is_admin' class="form-control-checkbox" {{ ($user->admin) ? 'checked':'' }} >
-            <label class='mb-2' for='is_admin'>Admin</label>
+            <input type="checkbox" id='d_status' name='d_status' class="form-control-checkbox" {{ ($dept->d_status) ? 'checked':'' }} >
+            <label class='mb-2' for='d_status'>Active</label>
         </div>
 
         
-
-        
-
         <input type="submit" value='Edit' class="mt-3 btn btn-primary btn-sm px-4">
     </form>
 
@@ -61,7 +44,7 @@
 
         
         $.ajax({
-            url:'{{ route("user.update", $user->id) }}',
+            url:'{{ route("dept.update", $dept->id) }}',
             type:'post',
             data:data,
             dataType:'text',

@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/depts', [DeptController::class, 'index'])->name('depts');
     Route::post('/depts', [DeptController::class, 'store'])->name('depts.store');
+    Route::get('/dept/{dept}', [DeptController::class, 'edit'])->name('dept.edit');
+    Route::post('/dept/{dept}', [DeptController::class, 'update'])->name('dept.update');
 
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
     Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');

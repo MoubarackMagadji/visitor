@@ -86,7 +86,7 @@ class DeptController extends Controller
      */
     public function edit(Dept $dept)
     {
-        //
+        return view('depts.edit', compact('dept'));
     }
 
     /**
@@ -98,7 +98,29 @@ class DeptController extends Controller
      */
     public function update(Request $request, Dept $dept)
     {
-        //
+
+        
+        $validator = \Validator::make($request->all(),[
+            'name' => ['required', Rule::unique("depts", "name")->ignore($dept->id)]
+        ]);
+
+        
+        
+        if ($validator->fails())
+        {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+        
+            ), 202);
+        }
+        
+        $dept->name = $request->name;
+        $dept->d_status = ($request->d_status) ? true : false;
+        
+        $dept->save();
+
+        echo 'ok';
     }
 
     /**
